@@ -1,7 +1,9 @@
 package com.jsindicue.sistemaposjava.modelo;
 
+import java.util.Objects;
+
 public class Cliente extends Persona{
-    private int idCliente;
+    private Integer id;
     private String direccion;
     private String telefono;
 
@@ -11,12 +13,12 @@ public class Cliente extends Persona{
 
     public Cliente(){
         super();
-        this.idCliente = ++ultimoId;
+        this.id = ++ultimoId;
     }
 
     public Cliente(String nombreCompleto, String direccion, String telefono) {
         super(nombreCompleto);
-        this.idCliente = ++ultimoId;
+        this.id = ++ultimoId;
         this.direccion = direccion;
         this.telefono = telefono;
     }
@@ -37,21 +39,33 @@ public class Cliente extends Persona{
         this.telefono = telefono;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", nombreCompleto='" + nombreCompleto + '\'' +
-                '}';
+        return "Cliente: " +
+                " id: " + id +
+                ", direccion: " + direccion +
+                ", telefono: " + telefono +
+                ", nombreCompleto: " + nombreCompleto;
     }
 }
